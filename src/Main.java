@@ -7,37 +7,48 @@ import  java.util.Scanner;
 import java.util.*; // map, set, list...
 public class Main {
     public static void main(String[] args) {
+        String diet = "";
+        int maxCarbs = Integer.MAX_VALUE;
 
         String key = Credentials.Key;
         String host = Credentials.Host;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello! Let me find you a recipe!");
-        String diet = "";
-        boolean dietFound = false;
-        do {
-            System.out.print("Enter a diet: ");
-            diet = scanner.nextLine();
 
-            dietFound = DietValidation.validate(diet);
-
-            if (!dietFound) {
-                System.out.println("Diet " + diet + " is not available.");
-                System.out.println("Supported diets are:");
-                DietValidation.printDiets();
-            }
-
-
-        } while(!dietFound);
-
-        System.out.print("Do you want to filter by max carbs? (Y/N): ");
-        String yesNo = scanner.nextLine();
-        int maxCarbs = Integer.MAX_VALUE;
-        if (yesNo.equalsIgnoreCase("y")) {
-            System.out.print("enter max carbs: ");
-            maxCarbs = scanner.nextInt();
+        if(args.length == 1) {
+            diet = args[0];
+            System.out.println("args are:");
         }
+        else if(args.length == 2) {
+            diet = args[0];
+            maxCarbs = Integer.parseInt(args[1]);
+            System.out.println("command line args are:");
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Hello! Let me find you a recipe!");
+
+            boolean dietFound = false;
+            do {
+                System.out.print("Enter a diet: ");
+                diet = scanner.nextLine();
+
+                dietFound = DietValidation.validate(diet);
+
+                if (!dietFound) {
+                    System.out.println("Diet " + diet + " is not available.");
+                    System.out.println("Supported diets are:");
+                    DietValidation.printDiets();
+                }
 
 
+            } while(!dietFound);
+
+            System.out.print("Do you want to filter by max carbs? (Y/N): ");
+            String yesNo = scanner.nextLine();
+
+            if (yesNo.equalsIgnoreCase("y")) {
+                System.out.print("enter max carbs: ");
+                maxCarbs = scanner.nextInt();
+            }
+        }
 
 
 
