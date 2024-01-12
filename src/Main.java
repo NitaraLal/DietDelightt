@@ -1,4 +1,4 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+
 import java.net.URI; // library to access API endpoints
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -15,18 +15,18 @@ public class Main {
 
         if(args.length == 1) {
             diet = args[0];
-            System.out.println("args are:");
+
         }
         else if(args.length == 2) {
             diet = args[0];
             maxCarbs = Integer.parseInt(args[1]);
-            System.out.println("command line args are:");
+
         } else {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Hello! Let me find you a recipe!");
 
             boolean dietFound = false;
-            do {
+            do { 
                 System.out.print("Enter a diet: ");
                 diet = scanner.nextLine();
 
@@ -45,7 +45,7 @@ public class Main {
             String yesNo = scanner.nextLine();
 
             if (yesNo.equalsIgnoreCase("y")) {
-                System.out.print("enter max carbs: ");
+                System.out.print("Enter max carbs: ");
                 maxCarbs = scanner.nextInt();
             }
         }
